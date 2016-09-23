@@ -1,0 +1,42 @@
+<div class="container-fluid">
+
+  <div class="page-header">
+    <h1>
+      <small>Callstack</small>
+    </h1>
+  </div>
+
+  <div class="panel panel-default" *ngIf="callstack">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <div class="row">
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            {{ callstack.signature }}
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            {{ callstack.netExecutionTime }}
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            {{ callstack.executionTime }}
+          </div>
+        </div>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="well" *ngFor="let child of callstack.children">
+        <div class="row">
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            {{ child.signature }}
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            {{ child.netExecutionTime }}
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            {{ child.executionTime }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
