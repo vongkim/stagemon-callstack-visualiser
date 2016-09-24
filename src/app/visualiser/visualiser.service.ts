@@ -5,7 +5,7 @@ import {Callstack} from "./callstack/callstack.model";
 
 @Injectable()
 export class VisualiserService {
-  private _jsonLocation = 'assets/data/q1.json';
+  private _jsonLocation = 'assets/data/q2.json';
 
   constructor(private _http:Http) {
   }

@@ -1,0 +1,30 @@
+<div class="panel-body">
+  <div class="panel" *ngFor="let child of children">
+    <div class="row">
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        {{ child.signature }}
+      </div>
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar"
+               [attr.aria-valuenow]="child.netExecutionTime"
+               aria-valuemin="0"
+               [attr.aria-valuemax]="child.executionTime"
+               [style.width]="util.toPercentage(child.executionTime, parent.executionTime)"
+               [style.min-width]="'3em'">
+            {{ util.toPercentage(child.executionTime, parent.executionTime) }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        {{ util.toSeconds(child.executionTime) }}
+      </div>
+    </div>
+
+    <sv-callstack-tree [children]="child.children"
+                       [parent]="child"
+                       [root]="root"
+                       *ngIf="child.children.length > 0">
+    </sv-callstack-tree>
+  </div>
+</div>

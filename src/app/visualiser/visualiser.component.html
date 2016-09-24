@@ -8,34 +8,40 @@
 
   <div class="panel panel-default" *ngIf="callstack">
     <div class="panel-heading">
-      <h3 class="panel-title">
-        <div class="row">
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            {{ callstack.signature }}
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            {{ callstack.netExecutionTime }}
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            {{ callstack.executionTime }}
-          </div>
+      <div class="row">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <label>SIGNATURE</label>
         </div>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <div class="well" *ngFor="let child of callstack.children">
-        <div class="row">
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-            {{ child.signature }}
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            {{ child.netExecutionTime }}
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            {{ child.executionTime }}
-          </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <label>PERCENTAGE</label>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <label>SECONDS</label>
         </div>
       </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel row">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          {{ callstack.signature }}
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                 [attr.aria-valuenow]="callstack.executionTime"
+                 aria-valuemin="0"
+                 [attr.aria-valuemax]="callstack.executionTime"
+                 [style.width]="utils.toPercentage(callstack.executionTime,callstack.executionTime)"
+                 [style.min-width]="'3em'">
+              {{ utils.toPercentage(callstack.executionTime, callstack.executionTime) }}
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          {{ utils.toSeconds(callstack.executionTime) }}
+        </div>
+      </div>
+      <sv-callstack-tree [children]="callstack.children" [parent]="callstack" [root]="callstack"></sv-callstack-tree>
     </div>
   </div>
 
