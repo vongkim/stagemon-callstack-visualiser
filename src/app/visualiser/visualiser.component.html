@@ -1,29 +1,46 @@
 <div class="container-fluid">
-
   <div class="page-header">
     <h1>
       <small>Callstack</small>
+      <button class="btn btn-primary pull-right" (click)="lgModal.show()">Load callstack modal</button>
     </h1>
   </div>
 
-  <div class="panel panel-default" *ngIf="callstack">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-          <label>SIGNATURE</label>
+  <div bsModal
+       #lgModal="bs-modal"
+       class="modal fade"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Callstack Model</h4>
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-          <label>PERCENTAGE</label>
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-          <label>SECONDS</label>
+        <div class="modal-body">
+          <div ace-editor
+               [text]="callstackString"
+               [mode]="'json'"
+               [options]="options"
+               [readOnly]="false"
+               [autoUpdateContent]="true"
+               (textChanged)="onChange($event)"
+               style="min-height: 600px; width:100%;"></div>
         </div>
       </div>
     </div>
-    <div class="panel-body">
-      <div class="panel row">
+  </div>
+
+  <div class="panel panel-default" *ngIf="callstack && callstack.signature">
+    <div class="panel-heading">
+      <div class="row">
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-          {{ callstack.signature }}
+          <label>SIGNATURE: {{ callstack.signature }}</label>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
           <div class="progress">
@@ -38,11 +55,11 @@
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-          {{ utils.toSeconds(callstack.executionTime) }}
+          <label>{{ utils.toSeconds(callstack.executionTime) }}</label>
         </div>
       </div>
-      <sv-callstack-tree [children]="callstack.children" [parent]="callstack" [root]="callstack"></sv-callstack-tree>
     </div>
+    <sv-callstack-tree [children]="callstack.children" [parent]="callstack" [root]="callstack"></sv-callstack-tree>
   </div>
 
 </div>

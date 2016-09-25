@@ -1,6 +1,9 @@
 .panel .row {
-  border-left: solid lightgrey 1px;
-  border-bottom: solid lightgrey 1px;
-  border-bottom-left-radius: 3px;
+  border-bottom: solid grey 1px;
   overflow-wrap: break-word;
+}
+
+.panel-body {
+  border-left: solid grey 1px;
+  border-bottom: solid grey 1px;
 }

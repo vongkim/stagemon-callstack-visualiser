@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private viewContainerRef: ViewContainerRef;
+
+  public constructor(viewContainerRef: ViewContainerRef) {
+    this.viewContainerRef = viewContainerRef;
+  }
 }

@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {VisualiserModule} from "./visualiser/visualiser.module";
+import {Ng2BootstrapModule} from "ng2-bootstrap";
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {VisualiserModule} from "./visualiser/visualiser.module";
     BrowserModule,
     FormsModule,
     HttpModule,
+    Ng2BootstrapModule,
     VisualiserModule
   ],
   providers: [],
