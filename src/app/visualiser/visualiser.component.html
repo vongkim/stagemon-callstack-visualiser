@@ -1,42 +1,21 @@
 <div class="container-fluid">
-  <div class="page-header">
+  <div class="page-header" *ngIf="callstackHits">
     <h1>
-      <small>Callstack</small>
-      <button class="btn btn-primary pull-right" (click)="lgModal.show()">Load callstack modal</button>
+      <small>Callstack {{ callstackIndex + 1 }} of {{ callstackHits.length  }}</small>
+      <div class="pull-right">
+        <button class="btn btn-default" (click)="previous()" *ngIf="callstackIndex > 0">
+          <span class="glyphicon glyphicon-chevron-left"></span> Previous
+        </button>
+        <button class="btn btn-default" (click)="next()" *ngIf="callstackIndex + 1 < callstackHits.length">Next
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        <button class="btn btn-primary" (click)="toggleRefresh()"><span class="glyphicon glyphicon-refresh"></span> Auto {{ isAutoRefresh() }}</button>
+        <button class="btn btn-primary" (click)="refresh()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+      </div>
     </h1>
   </div>
 
-  <div bsModal
-       #lgModal="bs-modal"
-       class="modal fade"
-       tabindex="-1"
-       role="dialog"
-       aria-labelledby="myLargeModalLabel"
-       aria-hidden="true">
-
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Callstack Model</h4>
-        </div>
-        <div class="modal-body">
-          <div ace-editor
-               [text]="callstackString"
-               [mode]="'json'"
-               [options]="options"
-               [readOnly]="false"
-               [autoUpdateContent]="true"
-               (textChanged)="onChange($event)"
-               style="min-height: 600px; width:100%;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel panel-default" *ngIf="callstack && callstack.signature">
+  <div class="panel panel-default" *ngIf="callstack && callstack.signature" highlight-js-content>
     <div class="panel-heading">
       <div class="row">
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -49,17 +28,23 @@
                  aria-valuemin="0"
                  [attr.aria-valuemax]="callstack.executionTime"
                  [style.width]="utils.toPercentage(callstack.executionTime,callstack.executionTime)"
-                 [style.min-width]="'3em'">
+                 >
               {{ utils.toPercentage(callstack.executionTime, callstack.executionTime) }}
             </div>
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-          <label>{{ utils.toSeconds(callstack.executionTime) }}</label>
+          <label>{{ utils.toMillisecond(callstack.executionTime) }}</label>
         </div>
       </div>
     </div>
-    <sv-callstack-tree [children]="callstack.children" [parent]="callstack" [root]="callstack"></sv-callstack-tree>
+    <sv-callstack-tree
+      [children]="callstack.children"
+      [parent]="callstack"
+      [root]="callstack"
+      [minMilliseconds]="minMilliseconds">
+
+    </sv-callstack-tree>
   </div>
 
 </div>

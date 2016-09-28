@@ -1,9 +1,15 @@
 .panel .row {
-  border-bottom: solid grey 1px;
   overflow-wrap: break-word;
 }
 
-.panel-body {
-  border-left: solid grey 1px;
-  border-bottom: solid grey 1px;
+.progress-bar {
+  color: black;
+}
+
+.hljs {
+  padding-top: 0;
+}
+
+.exceeded-min-millisecond {
+  color: red;
 }

@@ -8,10 +8,10 @@ export class CallstackUtil {
 
   toPercentage(netExecution: number, execution: number) {
     let percent = (netExecution / execution) * 100;
-    return percent.toFixed(2) + '%';
+    return percent.toFixed(0) + '%';
   }
 
-  toSeconds(nanosec: number) {
-    return nanosec / 1000000000;
+  toMillisecond(nanosec: number) {
+    return (nanosec / 1000000).toFixed(2) + 'ms';
   }
 }
