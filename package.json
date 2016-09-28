@@ -1,6 +1,17 @@
 {
   "name": "stagemon-callstack-visualiser",
-  "version": "0.0.0",
+  "description": "A simple tool to visualise stagemonitor's callstack data.",
+  "keywords": [
+    "stagemon",
+    "callstack",
+    "visualiser",
+    "elasticsearch",
+    "stagemonitor"
+  ],
+  "author": "Vong Kim <vong.kim1@gmail.com>",
+  "homepage": "https://github.com/vongkim/stagemon-callstack-visualiser",
+  "contributors": [],
+  "version": "0.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -10,7 +21,12 @@
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
-  "private": true,
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vongkim/stagemon-callstack-visualiser"
+  },
+  "bugs": "https://github.com/vongkim/stagemon-callstack-visualiser/issues",
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
