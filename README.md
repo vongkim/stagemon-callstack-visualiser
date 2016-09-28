@@ -1,13 +1,21 @@
-# StagemonCallstackVisualiser
+# Stagemon Callstack Visualiser
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
+A simple tool to visualise [stagemonitor's](http://www.stagemonitor.org) callstack data stored in [elasticsearch](https://www.elastic.co). This tool is designed to be used only in development and in no means production ready.
+
+## Requirements
+* This project requires that elasticsearch has been installed and configured to allow CORS 
+* Stagemonitor has been installed and configured in your web application with data stored in elasticsearch.
+
+
+Add the following to your /elasticsearch-x.x.x/config/elasticsearch.yml
+`http.cors.enabled: true`
+`http.cors.allow-origin: "*"`
+
+Replace origin '*' to your preferred origin.
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
 ## Build
 
@@ -22,10 +30,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
 Before running the tests make sure you are serving the app via `ng serve`.
 
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
 ## Further help
 
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This project was generated with the [angular-cli](https://github.com/angular/angular-cli). To get more help on the `angular-cli` use `ng --help` or go check out the [angular-cli README](https://github.com/angular/angular-cli/blob/master/README.md).
