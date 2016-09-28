@@ -8,9 +8,10 @@ A simple tool to visualise [stagemonitor's](http://www.stagemonitor.org) callsta
 
 
 Add the following to your /elasticsearch-x.x.x/config/elasticsearch.yml
-`http.cors.enabled: true`
-`http.cors.allow-origin: "*"`
-
+```
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+```
 Replace origin '*' to your preferred origin.
 
 
